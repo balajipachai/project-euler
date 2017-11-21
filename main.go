@@ -8,11 +8,11 @@ import "fmt"
 
 func multiplesOfThreeAndFive(lowerLimit, upperLimit int) int {
 	var i, sum int
-		for i = lowerLimit; i < upperLimit; i++ {
-			if i%3 == 0 || i%5 == 0 {
-				sum += i
-			}
+	for i = lowerLimit; i < upperLimit; i++ {
+		if i%3 == 0 || i%5 == 0 {
+			sum += i
 		}
+	}
 
 	return sum
 
@@ -26,32 +26,76 @@ func multiplesOfThreeAndFive(lowerLimit, upperLimit int) int {
 
 func fibonacci() int {
 	var sumOfEvenValuedTerms int
-		var nextTerm int
-		var firstTerm, secondTerm int = 1, 2
-		//fmt.Printf("%d\t%d", firstTerm, secondTerm)
-		fourMillion := 4000000
-		for nextTerm < fourMillion {
-			nextTerm = firstTerm + secondTerm
-				firstTerm = secondTerm
-				secondTerm = nextTerm
-				//fmt.Printf("%d\t", nextTerm)
-				//sumOfEvenValuedTerms++
+	var nextTerm int
+	var firstTerm, secondTerm int = 1, 2
+	//fmt.Printf("%d\t%d", firstTerm, secondTerm)
+	fourMillion := 4000000
+	for nextTerm < fourMillion {
+		nextTerm = firstTerm + secondTerm
+		firstTerm = secondTerm
+		secondTerm = nextTerm
+		//fmt.Printf("%d\t", nextTerm)
+		//sumOfEvenValuedTerms++
 
-				// Checks if nextTerm is Even or Odd
-				// If Odd ignore else add it to sumOfEvenValuedTerms
-				if nextTerm%2 == 0 {
-					//fmt.Printf("nextTerm = %d\n", nextTerm)
-					sumOfEvenValuedTerms += nextTerm
-				}
+		// Checks if nextTerm is Even or Odd
+		// If Odd ignore else add it to sumOfEvenValuedTerms
+		if nextTerm%2 == 0 {
+			//fmt.Printf("nextTerm = %d\n", nextTerm)
+			sumOfEvenValuedTerms += nextTerm
 		}
+	}
 	//Since for loop begins from 1,2 and it calculates even numbers after 2 , without including 2.
 	return sumOfEvenValuedTerms + 2
 }
 
+// Checks if a number is Prime or not
+// Returns true or false depending on the result.
+func isPrime(number int64) bool {
+	var i int64
+	for i = 2; i < number; i++ {
+		if number%i == 0 {
+			return false
+		}
+
+	}
+	//For numbers like 3, 5, 7 etc
+	fmt.Printf("%d is Prime\n", number)
+	return true
+}
+
+// Largest Prime Factor
+func largestPrimeFactor(number int64) int64 {
+	var max int64
+	if number > max {
+		max = number
+	}
+	return max
+}
+
+// Lists all factors of a given number
+func factors(number int64) {
+	var i, largeFactor int64
+	for i = 2; i < number; i++ {
+		if number%i == 0 {
+			if isPrime(i) {
+				fmt.Printf("%d is Prime Factor of %d\n", i, number)
+				largeFactor = largestPrimeFactor(i)
+			}
+		}
+	}
+	// For numbers like 3, 5 , 7 etc
+	isPrime(number)
+	fmt.Printf("Largest Prime Factor of %d is %d", number, largeFactor)
+}
 func main() {
-result := multiplesOfThreeAndFive(3, 1000)
-		fmt.Println("The Sum of multiples of 3 or 5 below 1000: ", result)
-		fiboResult := fibonacci()
-		fmt.Println("Sum of Even valued terms in Fibonacci less than 400000: ", fiboResult)
+	result := multiplesOfThreeAndFive(3, 1000)
+	fmt.Println("The Sum of multiples of 3 or 5 below 1000: ", result)
+	fiboResult := fibonacci()
+	fmt.Println("Sum of Even valued terms in Fibonacci less than 400000: ", fiboResult)
+	// Largest Prime Factor Input
+	var number int64
+	fmt.Print("Enter a Number: ")
+	fmt.Scan(&number)
+	factors(number)
 
 }
